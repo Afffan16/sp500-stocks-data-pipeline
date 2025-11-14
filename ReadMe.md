@@ -1,4 +1,4 @@
-```markdown
+
 # Daily S&P 500 ETL Pipeline: Airflow → S3 → Snowflake  
 
 **Automated daily extraction, transformation, and loading of S&P 500 stock data using Apache Airflow, AWS S3, and Snowflake.**
@@ -32,8 +32,7 @@ This project runs a **fully automated daily ETL pipeline** that:
 - Deployed on **AWS EC2** with **Docker Compose**
 
 --- 
----
-```
+
 ## Snowflake Schema
 
 ```sql
