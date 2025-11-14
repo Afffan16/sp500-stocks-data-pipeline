@@ -220,10 +220,10 @@ CREATE OR REPLACE STAGE STOCKS_STAGE
 ## Author
 
 **Affan**  
-Data Engineer | Finance + Automation Enthusiast  
+Data Engineer  
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue)](https://linkedin.com/in/yourprofile)  
-[![GitHub](https://img.shields.io/badge/GitHub-Follow-black)](https://github.com/yourusername)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue)](https://linkedin.com/in/m-affan-bin-aamir-338245334)  
+[![GitHub](https://img.shields.io/badge/GitHub-Follow-black)](https://github.com/Afffan16)
 
 ---
 
@@ -232,19 +232,4 @@ Data Engineer | Finance + Automation Enthusiast
 > *"The pipeline works. The bugs don't."* – Me, after 47 `docker-compose down && up`
 
 ---
-```
-
----
-
-### How to Use This README
-
-1. Save as `README.md` in your GitHub repo root
-2. Replace:
-   - `your-key`, `your-secret`, `your-account`
-   - LinkedIn/GitHub links
-   - Add `docker-compose.yml` if public
-3. Upload the **architecture diagram** as `architecture-diagram.png`
-4. Push to GitHub → Instant professional project!
-
-Let your repo **speak for your skills**. This README does exactly that.
 ```
