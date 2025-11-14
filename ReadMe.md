@@ -31,36 +31,9 @@ This project runs a **fully automated daily ETL pipeline** that:
 - Snowflake-ready schema with calculated metrics
 - Deployed on **AWS EC2** with **Docker Compose**
 
+--- 
 ---
-
-## Project Structure
-
 ```
-.
-├── sp500-dag.py              # Airflow DAG (main pipeline)
-├── snowflake_setup.txt       # Snowflake DDL (table, stage, roles)
-├── commands.txt              # Full deployment & setup guide
-├── docker-compose.yml        # (Assumed in deployment)
-├── data/                     # Local temp storage (Docker volume)
-└── README.md                 # You're here!
-```
-
----
-
-## Pipeline Flow
-
-```mermaid
-graph LR
-    A[Wikipedia] --> B(Fetch Tickers)
-    B --> C{yfinance API}
-    C --> D[Transform: % Change, Range]
-    D --> E[Upload to S3]
-    E --> F[Snowflake COPY INTO]
-    F --> G[STOCK_DATA Table]
-```
-
----
-
 ## Snowflake Schema
 
 ```sql
@@ -232,4 +205,3 @@ Data Engineer
 > *"The pipeline works. The bugs don't."* – Me, after 47 `docker-compose down && up`
 
 ---
-```
