@@ -1,0 +1,101 @@
+Signup : https://openweathermap.org/
+Install: Winscp
+
+
+
+### AWS EC2 instance and security group creation
+- t2.xlarge instance
+- 32GB of storage recommended
+- Allow ports 4000-38888
+- Connect to ec2 via ssh
+
+
+#Create New Role with s3fullaccess and ec3fullaccess
+Action -> security -> Modify Iam Role
+
+# connect to EC2
+ssh -i "dependency.pem" ec2-user@ec2-174-129-182-6.compute-1.amazonaws.com
+
+# Copy files to EC2
+scp -r -i "dependency.pem" docker_exp ec2-user@ec2-174-129-182-6.compute-1.amazonaws.com:/home/ec2-user/
+
+# connect with port forwarding
+ssh -i "dependency.pem" ec2-54-196-203-200.compute-1.amazonaws.com -L 8080:localhost:8080 -L 5050:localhost:5050 -L 5433:localhost:5433 -L 5555:localhost:5555 
+
+- Commands to install Docker
+sudo yum update -y
+sudo yum install docker
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+sudo gpasswd -a $USER docker
+newgrp docker
+sudo yum install python-pip
+sudo pip install docker-compose
+
+echo -e "AIRFLOW_UID=50000" > .env
+
+#Start Docker: 
+sudo systemctl start docker
+#check ps:
+ps
+#Stop Docker:
+sudo systemctl stop docker
+
+
+docker-compose up -d --build
+docker-compose down ( If needed )
+docker-compose up -d ( just start without rebuilding )
+
+#How to access tools in local machine
+    List Docker containers running: docker ps
+    Airflow Lab at: http://localhost:8080/ 
+
+##Airflow Connection 
+
+Admin -> Connection
+
+Create Two Connection
+
+1. Connection
+Connection ID : aws_access_keys
+Connection Type : AWS
+Description : "whatever you like"
+AWS Access Key ID : 
+AWS Secret Access Key :
+Press Save
+
+
+
+
+2. Connection
+Connection ID : snowflake_conn
+Connection Type : Snowflake
+Description : "whatever you like"
+login : AIRFLOW_USER
+schema : airflow
+Account : "your-account-identifier"
+Warehouse : COMPUTE_WH
+Database : AIRFLOW_DATA
+Region : "your region"(us-west-2)
+Role : AIRFLOW_ROLE
+
+
+
+
+###Login Winscp
+
+File protocol : SFTP
+Host name : <EC2 Public DNS>
+Port : 22
+User name: ec2-user
+
+Advanced -> SSH -> Authentication -> Private key file -> Select .Pem file
+Press ok 
+Press Login 
+
+
+
+### Give Permission 
+
+sudo chown -R ec2-user:ec2-user /home/ec2-user/
+
